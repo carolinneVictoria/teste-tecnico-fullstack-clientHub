@@ -1,57 +1,57 @@
-# 🧪 Teste Prático - Desenvolvedor Fullstack Júnior
+# Teste Técnico - Desenvolvedor Fullstack Júnior
 
-## 📝 Descrição do Desafio
-Desenvolver uma aplicação web para cadastro de Cliente e Endereços. 
+## Descrição
+Desenvolver uma aplicação web para cadastro de Cliente e seus Endereços. 
 
 ---
 
-## 📋 Requisitos Funcionais 
+## Requisitos Funcionais 
 - O usuário deve ser capaz de criar clientes e vincular um ou mais endereços a ele
-- O usuário deve ser capaz de cadastrar e editar endereços usando a API [ViaCEP](https://viacep.com.br/) e obter os dados de endereço automaticamente
+- O usuário deve ser capaz de cadastrar e editar endereços usando a API [ViaCEP](https://viacep.com.br/) e obter os dados de endereço automaticamente com base no CEP
 - O usuário deve ser capaz de escolher entre cadastrar um cliente que é pessoa física (CPF) ou jurídica (CNPJ)
-- O usuário deve ser capaz de editar e excluir dados do cliente e endereços
+- O usuário deve ser capaz de editar e excluir um cliente ou seus endereços
 - O usuário deve ser capaz de buscar clientes
 - O usuário deve ser capaz de realizar busca por nome ou email, e filtrar dados por data
 
 ---
 
-## ⚙️ Requisitos Técnicos
+## Requisitos Técnicos
 
 ### Observações Importantes
-- Os requisitos listados abaixo são **obrigatórios**, mas funcionalidades extras que agreguem **usabilidade, performance ou segurança** serão bem-vindas e avaliadas positivamente.
-- O candidato deve estar preparado para **explicar suas escolhas técnicas** (bibliotecas, padrões de arquitetura, banco de dados, etc.) e **como essas escolhas foram aplicadas** no projeto. 
+- Os requisitos listados abaixo são **obrigatórios**.
+- O candidato deve estar preparado para **explicar suas escolhas técnicas** (estrutura, bibliotecas, arquitetura, banco de dados, etc.) e **como essas escolhas foram aplicadas** no projeto.
+- O arquivo `readme.md` deve ter o passo a passo para rodar o projeto. Fique a vontade para adicionar prints e gifs explicativos.
 
 ---
 
 ### Backend
-- **Stack**: Node.js + Typescript (uso de framework é permitido)
-- **Banco de dados**: PostgreSQL ou MongoDB
+- **Stack**: [Node.js](https://nodejs.org/pt-br) + [Typescript](https://www.typescriptlang.org/) (uso de frameworks como [Express](https://expressjs.com/pt-br/), [Fastify](https://fastify.dev/) é permitido)
+- **Banco de dados**: [PostgreSQL](https://www.postgresql.org/) ou [MongoDB](https://www.mongodb.com/) (Uso de ORM como [Prisma](https://www.prisma.io/) é permitido)
 
-#### Banco de Dados (Campos mínimos)
-**Cliente**
-- nome (obrigatório)  
+#### Banco de Dados (Campos)
+**Customer**
+- name (obrigatório)  
 - email (obrigatório)  
 - whatsapp  
-- tipo: [CPF/CNPJ] (obrigatório)  
-- cpf  
-- cnpj  
+- document_type: [CPF/CNPJ] (obrigatório)  
+- document_number: (obrigatório) 
 
-**Endereço**
+**Address**
 - cep  
-- rua  
-- bairro  
-- cidade  
+- street  
+- neighborhood  
+- city  
 
 ---
 
 ### Frontend
-- **Stack**: React + Vite + [shadcn/ui](https://ui.shadcn.com/)
+- **Stack**: React + Vite + [Shadcn](https://ui.shadcn.com/)
 
 ---
 
-## 🤖 Uso de Inteligência Artificial (IA)
-O uso de ferramentas de **IA** (como ChatGPT, Copilot, etc.) é **permitido**, mas com as seguintes regras:
-- **Não é permitido** utilizar IA para **gerar código completo** ou **copiar soluções prontas**.
+## Uso de Inteligência Artificial (IA)
+O uso de ferramentas de **IA** é **permitido**, mas com as seguintes regras:
+- **Não é permitido** utilizar IA para **gerar código** ou **copiar soluções prontas**.
 - O uso é permitido para:
   - Consultar dúvidas conceituais
   - Pesquisar boas práticas
@@ -62,10 +62,10 @@ O uso de ferramentas de **IA** (como ChatGPT, Copilot, etc.) é **permitido**, m
 
 ---
 
-## 🌟 Diferenciais
+## Diferenciais (Não obrigatórios)
 
 ### Backend
-- Organização do código seguindo boas práticas e clean-code
+- Organização do código seguindo boas práticas
 - Virtualização do ambiente (Docker)
 - Uso de **ORM** (Prisma, Sequelize, Mongoose, etc.)
 
@@ -76,10 +76,10 @@ O uso de ferramentas de **IA** (como ChatGPT, Copilot, etc.) é **permitido**, m
 
 ---
 
-## 📦 Entrega
+## Entrega
 
-1. O candidato deve **clonar o repositório base** fornecido pela empresa.  
-2. Após finalizar o desafio, deverá **subir o código em um repositório público** no GitHub.  
+1. O candidato deve **clonar o repositório** fornecido pela empresa.  
+2. Após finalizar o desafio, deverá **subir o código em um repositório público** no seu perfil do GitHub.  
 3. Enviar o **link do repositório finalizado** para avaliação.  
 
 O repositório deve conter um **README.md** com:
@@ -88,7 +88,7 @@ O repositório deve conter um **README.md** com:
 
 ---
 
-## ✅ Critérios de Avaliação
+## Critérios de Avaliação
 - Cobertura de requisitos funcionais
 - Busca e filtros funcionando corretamente
 - Organização do código e boas práticas
@@ -98,8 +98,8 @@ O repositório deve conter um **README.md** com:
 
 ---
 
-## ⏱️ Prazo
-- **5 dias corridos** após receber o desafio.  
+## Prazo
+- Até **5 dias corridos** após receber o desafio. 
 
 Qualquer dúvida, fique à vontade para nos perguntar pelo canal de comunicação da vaga.  
-Boa sorte 🚀
+Boa sorte!
