@@ -106,3 +106,14 @@ app.put("/api/clientes/:id", async (req, res) => {
         res.status(500).json({ error: "Erro ao atualizar cliente" });
     }
 });
+
+// Rota para excluir um cliente
+app.delete("/api/clientes/:id", async (req, res) => {
+    try {
+        await prisma.cliente.delete({ where: { id: req.params.id } });
+        res.status(204).send();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao excluir cliente" });
+    }
+});
