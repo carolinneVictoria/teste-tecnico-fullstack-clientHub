@@ -1,7 +1,6 @@
 // Arquivo que define a estrutura do banco de dados e os modelos que o Prisma vai usar.
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -9,15 +8,15 @@ datasource db {
 }
 
 model Cliente {
-  id                  String   @id @default(cuid())    
-  nome                String
-  email               String
-  whatsapp            String?
-  tipoDocumento       String
-  numeroDocumento     String
-  dataCadastro        DateTime @default(now())
-  dataAtualizacao     DateTime @updatedAt
-  enderecos           Endereco[]
+  id              String     @id @default(cuid())
+  nome            String
+  email           String
+  whatsapp        String?
+  tipoDocumento   String
+  numeroDocumento String
+  dataCadastro    DateTime   @default(now())
+  dataAtualizacao DateTime   @updatedAt
+  enderecos       Endereco[]
 }
 
 model Endereco {
@@ -33,5 +32,5 @@ model Endereco {
   dataCadastro    DateTime @default(now())
   dataAtualizacao DateTime @updatedAt
 
-  cliente     Cliente   @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  cliente Cliente @relation(fields: [clienteId], references: [id], onDelete: Cascade)
 }

@@ -39,12 +39,12 @@ app.get("/api/clientes", async (req, res) => {
                             ],
                         }
                         : {},
-                        dataInicio ? { createdAt: { gte: dataInicio } } : {},
-                        dataFim ? { createdAt: { lte: dataFim } } : {},
+                        dataInicio ? { dataCadastro: { gte: dataInicio } } : {},
+                        dataFim ? { dataCadastro: { lte: dataFim } } : {},
                 ],
             },
             include: { enderecos: true },
-            orderBy: { createdAt: "desc" },
+            orderBy: { dataCadastro: "desc" },
         });
         res.json(clientes);
     } catch (error) {
