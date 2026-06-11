@@ -141,3 +141,25 @@ app.get("/api/cep/:cep", async (req, res) => {
         res.status(500).json({ error: "Erro ao consultar CEP" });
     }
 });
+
+// Rota para criar um novo endereço ligado a um cliente específico
+app.post("/api/clientes/:id/enderecos", async (req, res) => {
+    try{
+        const {cep, rua, bairro, cidade, estado, numero, complemento} = req.body;
+
+        if (!cep || !rua || !bairro || !cidade || !estado || !numero) {
+            return res.status(400).json({ error: "Todos os campos são obrigatórios, exceto complemento" });
+        }
+
+        const novoEndereco = await prisma.endereco.create({
+            data: {
+                clienteId: req.params.id,
+                cep, rua, bairro, cidade, estado, numero, complemento,
+            },
+        });
+        res.status(201).json(novoEndereco);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao criar endereço" });
+    }
+});
