@@ -178,3 +178,13 @@ app.put("/api/enderecos/:id", async (req, res) => {
     }
 });
 
+// Rota para excluir um endereço
+app.delete("/api/enderecos/:id", async (req, res) => {
+    try {
+        await prisma.endereco.delete({ where: { id: req.params.id } });
+        res.status(204).send();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao excluir endereço" });
+    }
+});
