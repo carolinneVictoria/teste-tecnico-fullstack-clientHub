@@ -188,3 +188,8 @@ app.delete("/api/enderecos/:id", async (req, res) => {
         res.status(500).json({ error: "Erro ao excluir endereço" });
     }
 });
+
+// Iniciar o servidor
+app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+});
