@@ -72,3 +72,20 @@ app.post("/api/clientes", async (req, res) => {
         res.status(500).json({ error: "Erro ao criar cliente" });
     }
 });
+
+// Rota para buscar um cliente especifico pelo ID
+app.get("/api/clientes/:id", async (req, res) => {
+    try {
+        const cliente = await prisma.cliente.findUnique({
+            where: { id: req.params.id },
+            include: { enderecos: true },
+        });
+        if (!cliente) {
+            return res.status(404).json({ error: "Cliente não encontrado" });
+        }
+        res.json(cliente);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao buscar cliente" });
+    }
+});
