@@ -89,3 +89,20 @@ app.get("/api/clientes/:id", async (req, res) => {
         res.status(500).json({ error: "Erro ao buscar cliente" });
     }
 });
+
+// Rota para atualizar um cliente existente
+app.put("/api/clientes/:id", async (req, res) => {
+    try {
+        const { nome, email, whatsapp, tipoDocumento, numeroDocumento } = req.body;
+
+        const clienteAtualizado = await prisma.cliente.update({
+            where: { id: req.params.id },
+            data: { nome, email, whatsapp, tipoDocumento, numeroDocumento },
+            include: { enderecos: true },
+        });
+        res.json(clienteAtualizado);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao atualizar cliente" });
+    }
+});
