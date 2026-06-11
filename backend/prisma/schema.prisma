@@ -1,0 +1,37 @@
+// Arquivo que define a estrutura do banco de dados e os modelos que o Prisma vai usar.
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Cliente {
+  id                  String   @id @default(cuid())    
+  nome                String
+  email               String
+  whatsapp            String?
+  tipoDocumento       String
+  numeroDocumento     String
+  dataCadastro        DateTime @default(now())
+  dataAtualizacao     DateTime @updatedAt
+  enderecos           Endereco[]
+}
+
+model Endereco {
+  id              String   @id @default(cuid())
+  clienteId       String
+  cep             String
+  rua             String
+  bairro          String
+  cidade          String
+  estado          String?
+  numero          String?
+  complemento     String?
+  dataCadastro    DateTime @default(now())
+  dataAtualizacao DateTime @updatedAt
+
+  cliente     Cliente   @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+}
