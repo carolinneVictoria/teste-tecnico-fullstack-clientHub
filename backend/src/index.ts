@@ -23,10 +23,10 @@ app.get("/api/health", (_req, res) => {
 app.get("/api/clientes", async (req, res) => {
     try {
         const busca = String(req.query.busca || "").trim();
-        const dataInicio = req.query.dataInicio 
-        ? new Date(String(req.query.dataInicio)) : null;
-        const dataFim = req.query.dataFim 
-        ? new Date(String(req.query.dataFim)) : null;
+        const dataInicio = req.query.dataInicio
+            ? new Date(String(req.query.dataInicio)) : null;
+        const dataFim = req.query.dataFim
+            ? new Date(String(req.query.dataFim)) : null;
 
         const clientes = await prisma.cliente.findMany({
             where: {
@@ -39,8 +39,8 @@ app.get("/api/clientes", async (req, res) => {
                             ],
                         }
                         : {},
-                        dataInicio ? { dataCadastro: { gte: dataInicio } } : {},
-                        dataFim ? { dataCadastro: { lte: dataFim } } : {},
+                    dataInicio ? { dataCadastro: { gte: dataInicio } } : {},
+                    dataFim ? { dataCadastro: { lte: dataFim } } : {},
                 ],
             },
             include: { enderecos: true },
@@ -61,7 +61,7 @@ app.post("/api/clientes", async (req, res) => {
         if (!nome || !email || !whatsapp || !tipoDocumento || !numeroDocumento) {
             return res.status(400).json({ error: "Todos os campos são obrigatórios" });
         }
-        
+
         const novoCliente = await prisma.cliente.create({
             data: { nome, email, whatsapp, tipoDocumento, numeroDocumento, },
             include: { enderecos: true },
@@ -115,5 +115,29 @@ app.delete("/api/clientes/:id", async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Erro ao excluir cliente" });
+    }
+});
+
+// Rota para consultar o serviço ViaCep e Retornar os dados do endereço com base no CEP
+app.get("/api/cep/:cep", async (req, res) => {
+    try {
+        const cep = String(req.params.cep || "").replace(/[^\d]/g, "");
+        if (cep.length !== 8) {
+            return res.status(400).json({ error: "CEP inválido" });
+        }
+        const { data } = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+        if (data.erro) {
+            return res.status(404).json({ error: "CEP não encontrado" });
+        }
+        res.json({
+            cep: data.cep,
+            rua: data.logradouro,
+            bairro: data.bairro,
+            cidade: data.localidade,
+            estado: data.uf,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao consultar CEP" });
     }
 });
