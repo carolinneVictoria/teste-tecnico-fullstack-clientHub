@@ -163,3 +163,18 @@ app.post("/api/clientes/:id/enderecos", async (req, res) => {
         res.status(500).json({ error: "Erro ao criar endereço" });
     }
 });
+
+// Rota para atualizar um endereço existente
+app.put("/api/enderecos/:id", async (req, res) => {
+    try {
+        const endereçoAtualizado = await prisma.endereco.update({
+            where: { id: req.params.id },
+            data: req.body,
+        });
+        res.json(endereçoAtualizado);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao atualizar endereço" });
+    }
+});
+
