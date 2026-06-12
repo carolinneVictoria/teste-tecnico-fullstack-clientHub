@@ -10,7 +10,7 @@ A aplicação permite o cadastro de clientes (Pessoa Física ou Pessoa Jurídica
 <img width="1307" height="656" alt="image" src="https://github.com/user-attachments/assets/6d504520-f414-4dd7-ad37-917f2aef313d" />
 
 ## Tela de Listagem de Clientes e Endereços
-<img width="1305" height="657" alt="image" src="https://github.com/user-attachments/assets/199245c1-3712-4dc2-8793-156d6203a5cc" />
+<img width="1313" height="658" alt="image" src="https://github.com/user-attachments/assets/90cd0e4c-d1de-467e-af80-12625a7785d6" />
 
 ## Tecnologias Utilizadas
 
