@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
+// Definindo a estrutura dos tipos
 type Endereco = {
     id: string;
     cep: string;
@@ -22,6 +23,7 @@ type Cliente = {
     enderecos: Endereco[];
 };
 
+// Armazenando a url basica da api
 const API = "/api";
 
 
@@ -213,11 +215,10 @@ function App() {
             setMessage(`Erro ${response.status}: ${erro}`);
             return;
         }
-        const data = await response.json();
         setMessage(
             editingAddressId
                 ? "Endereço atualizado com sucesso."
-                : `Endereço adicionado ao cliente ${data.clienteId}`,
+                : `Endereço adicionado ao cliente!`,
         );
         setEditingAddressId("");
         setAddressForm({
