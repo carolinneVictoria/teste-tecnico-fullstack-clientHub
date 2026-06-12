@@ -1,11 +1,11 @@
 // Importações Necessárias
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import axios from 'axios';
-import { PrismaClient } from '@prisma/client';
-
+import dotenv from "dotenv";
 dotenv.config();
+
+import { PrismaClient } from "@prisma/client";
+import axios from "axios";
+import cors from "cors";
+import express from "express";
 
 const app = express();
 const prisma = new PrismaClient();
@@ -24,9 +24,11 @@ app.get("/api/clientes", async (req, res) => {
     try {
         const busca = String(req.query.busca || "").trim();
         const dataInicio = req.query.dataInicio
-            ? new Date(String(req.query.dataInicio)) : null;
+            ? new Date(String(req.query.dataInicio))
+            : null;
         const dataFim = req.query.dataFim
-            ? new Date(String(req.query.dataFim)) : null;
+            ? new Date(String(req.query.dataFim))
+            : null;
 
         const clientes = await prisma.cliente.findMany({
             where: {
@@ -59,11 +61,13 @@ app.post("/api/clientes", async (req, res) => {
         const { nome, email, whatsapp, tipoDocumento, numeroDocumento } = req.body;
 
         if (!nome || !email || !whatsapp || !tipoDocumento || !numeroDocumento) {
-            return res.status(400).json({ error: "Todos os campos são obrigatórios" });
+            return res
+                .status(400)
+                .json({ error: "Todos os campos são obrigatórios" });
         }
 
         const novoCliente = await prisma.cliente.create({
-            data: { nome, email, whatsapp, tipoDocumento, numeroDocumento, },
+            data: { nome, email, whatsapp, tipoDocumento, numeroDocumento },
             include: { enderecos: true },
         });
         res.status(201).json(novoCliente);
@@ -144,17 +148,27 @@ app.get("/api/cep/:cep", async (req, res) => {
 
 // Rota para criar um novo endereço ligado a um cliente específico
 app.post("/api/clientes/:id/enderecos", async (req, res) => {
-    try{
-        const {cep, rua, bairro, cidade, estado, numero, complemento} = req.body;
+    try {
+        const { cep, rua, bairro, cidade, estado, numero, complemento } = req.body;
 
         if (!cep || !rua || !bairro || !cidade || !estado || !numero) {
-            return res.status(400).json({ error: "Todos os campos são obrigatórios, exceto complemento" });
+            return res
+                .status(400)
+                .json({
+                    error: "Todos os campos são obrigatórios, exceto complemento",
+                });
         }
 
         const novoEndereco = await prisma.endereco.create({
             data: {
                 clienteId: req.params.id,
-                cep, rua, bairro, cidade, estado, numero, complemento,
+                cep,
+                rua,
+                bairro,
+                cidade,
+                estado,
+                numero,
+                complemento,
             },
         });
         res.status(201).json(novoEndereco);
