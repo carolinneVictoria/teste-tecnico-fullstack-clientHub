@@ -1,105 +1,117 @@
-# Teste Técnico - Desenvolvedor Fullstack Júnior
+# ClientHub
 
-## Descrição
-Desenvolver uma aplicação web para cadastro de Cliente e seus Endereços. 
+Sistema de gerenciamento de clientes e endereços desenvolvido como teste técnico Fullstack.
 
----
+## Objetivo
 
-## Requisitos Funcionais 
-- O usuário deve ser capaz de criar clientes e vincular um ou mais endereços a ele
-- O usuário deve ser capaz de cadastrar e editar endereços usando a API [ViaCEP](https://viacep.com.br/) e obter os dados de endereço automaticamente com base no CEP
-- O usuário deve ser capaz de escolher entre cadastrar um cliente que é pessoa física (CPF) ou jurídica (CNPJ)
-- O usuário deve ser capaz de editar e excluir um cliente ou seus endereços
-- O usuário deve ser capaz de buscar clientes
-- O usuário deve ser capaz de realizar busca por nome ou email, e filtrar dados por data
+A aplicação permite o cadastro de clientes (Pessoa Física ou Pessoa Jurídica), gerenciamento de múltiplos endereços por cliente, consulta automática de CEP utilizando o ViaCEP e busca de registros por nome, e-mail ou período de cadastro.
 
----
+## Tela de Cadastro
+<img width="1307" height="656" alt="image" src="https://github.com/user-attachments/assets/6d504520-f414-4dd7-ad37-917f2aef313d" />
 
-## Requisitos Técnicos
+## Tela de Listagem de Clientes e Endereços
+<img width="1305" height="657" alt="image" src="https://github.com/user-attachments/assets/199245c1-3712-4dc2-8793-156d6203a5cc" />
 
-### Observações Importantes
-- Os requisitos listados abaixo são **obrigatórios**.
-- O candidato deve estar preparado para **explicar suas escolhas técnicas** (estrutura, bibliotecas, arquitetura, banco de dados, etc.) e **como essas escolhas foram aplicadas** no projeto.
-- O arquivo `readme.md` deve ter o passo a passo para rodar o projeto. Fique a vontade para adicionar prints e gifs explicativos.
-
----
+## Tecnologias Utilizadas
 
 ### Backend
-- **Stack**: [Node.js](https://nodejs.org/pt-br) + [Typescript](https://www.typescriptlang.org/) (uso de frameworks como [Express](https://expressjs.com/pt-br/), [Fastify](https://fastify.dev/) é permitido)
-- **Banco de dados**: [PostgreSQL](https://www.postgresql.org/) ou [MongoDB](https://www.mongodb.com/) (Uso de ORM como [Prisma](https://www.prisma.io/) é permitido)
 
-#### Banco de Dados (Campos)
-**Customer**
-- name (obrigatório)  
-- email (obrigatório)  
-- whatsapp  
-- document_type: [CPF/CNPJ] (obrigatório)  
-- document_number: (obrigatório) 
-
-**Address**
-- cep  
-- street  
-- neighborhood  
-- city  
-
----
+* Node.js
+* TypeScript
+* Express
+* Prisma ORM
+* PostgreSQL
+* Axios
+* Dotenv
 
 ### Frontend
-- **Stack**: React + Vite + [Shadcn](https://ui.shadcn.com/)
 
----
+* React
+* TypeScript
+* Vite
 
-## Uso de Inteligência Artificial (IA)
-O uso de ferramentas de **IA** é **permitido**, mas com as seguintes regras:
-- **Não é permitido** utilizar IA para **gerar código** ou **copiar soluções prontas**.
-- O uso é permitido para:
-  - Consultar dúvidas conceituais
-  - Pesquisar boas práticas
-  - Obter explicações ou comparações de abordagens
-- O candidato deve ter **total domínio** sobre as escolhas técnicas realizadas, demonstrando capacidade de explicar:
-  - **Por que** optou por determinada solução
-  - **Como** ela foi implementada dentro do projeto
+## Funcionalidades
 
----
+* Cadastro, edição e exclusão de clientes
+* Cadastro, edição e exclusão de endereços
+* Consulta automática de CEP via ViaCEP
+* Associação de múltiplos endereços a um cliente
+* Busca por nome e e-mail
+* Filtro por período de cadastro
+* API REST integrada ao banco PostgreSQL
+* Responsividade para telas menores
+* Light Mode e Dark Mode
 
-## Diferenciais (Não obrigatórios)
+## Estrutura do Projeto
 
-### Backend
-- Organização do código seguindo boas práticas
-- Virtualização do ambiente (Docker)
-- Uso de **ORM** (Prisma, Sequelize, Mongoose, etc.)
+```text
+teste-tecnico-fullstack/
+├── backend/
+│   ├── prisma/
+│   ├── src/
+│   └── .env
+├── frontend/
+│   ├── src/
+│   └── vite.config.ts
+└── README.md
+```
+## Prisma
 
-### Frontend
-- Uso de **React Hook Form** para gerenciamento de formulários
-- Uso de **React Query** para requisições e cache de dados
-- UI responsiva e amigável
 
----
+## Como Executar
 
-## Entrega
+### Pré-requisitos
 
-1. O candidato deve **clonar o repositório** fornecido pela empresa.  
-2. Após finalizar o desafio, deverá **subir o código em um repositório público** no seu perfil do GitHub.  
-3. Enviar o **link do repositório finalizado** para avaliação.  
+* Node.js (LTS)
+* PostgreSQL
+* Git
 
-O repositório deve conter um **README.md** com:
-- Passos para rodar o backend
-- Passos para rodar o frontend
+### 1. Clonar o repositório
 
----
+```bash
+git clone https://github.com/carolinneVictoria/teste-tecnico-fullstack-clientHub
+```
 
-## Critérios de Avaliação
-- Cobertura de requisitos funcionais
-- Busca e filtros funcionando corretamente
-- Organização do código e boas práticas
-- Estruturação do projeto
-- Clareza na documentação (`README.md`)
-- Capacidade de explicar e justificar as escolhas técnicas
+### 2. Configurar o banco de dados
 
----
+Crie um banco PostgreSQL e configure a conexão no arquivo `.env` do backend.
 
-## Prazo
-- Até **5 dias corridos** após receber o desafio. 
+Exemplo:
 
-Qualquer dúvida, fique à vontade para nos perguntar pelo canal de comunicação da vaga.  
-Boa sorte!
+```env
+DATABASE_URL=postgresql://postgres:SUA_SENHA@localhost:5432/nome_do_banco
+PORT=4000
+```
+
+### 3. Executar o Backend
+
+```bash
+cd backend
+npm install
+npx prisma generate
+npx prisma migrate dev --name init
+npm run dev
+```
+
+### 4. Executar o Frontend
+
+Em outro terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## Fluxo da Aplicação
+
+1. O usuário cadastra um cliente.
+2. O frontend envia os dados para a API.
+3. O backend valida e salva as informações no PostgreSQL.
+4. O usuário pode adicionar um ou mais endereços ao cliente.
+5. A consulta de CEP é realizada através da integração com o ViaCEP.
+6. Os dados são atualizados automaticamente na interface após cada operação.
+
+## Autor
+
+Desenvolvido por Carolinne Victoria.
