@@ -55,8 +55,6 @@ teste-tecnico-fullstack/
 │   └── vite.config.ts
 └── README.md
 ```
-## Prisma
-
 
 ## Como Executar
 
